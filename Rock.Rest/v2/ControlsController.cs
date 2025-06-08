@@ -10060,5 +10060,36 @@ namespace Rock.Rest.v2
         }
 
         #endregion
+
+        /// <summary>
+        /// Provides a list of groups suitable for a picker control.
+        /// </summary>
+        /// <param name="includeInactive">If set to true, inactive groups will also be returned.</param>
+        /// <returns>A list of groups with their Guid and Name.</returns>
+        [HttpGet]
+        [Route("grouppickerdata")] // The route is relative to the controller's prefix
+        public IActionResult GetGroupPickerData(bool includeInactive = false)
+        {
+            using (var rockContext = new Rock.Data.RockContext())
+            {
+                var groupQuery = new Rock.Model.GroupService(rockContext).Queryable();
+
+                if (!includeInactive)
+                {
+                    groupQuery = groupQuery.Where(g => g.IsActive);
+                }
+
+                var results = groupQuery
+                    .OrderBy(g => g.Name)
+                    .Select(g => new GroupPickerItemViewModel
+                    {
+                        Value = g.Guid,
+                        Text = g.Name
+                    })
+                    .ToList();
+
+                return Ok(results);
+            }
+        }
     }
 }
