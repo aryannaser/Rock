@@ -10084,7 +10084,8 @@ namespace Rock.Rest.v2
                     .Select(g => new GroupPickerItemViewModel
                     {
                         Value = g.Guid,
-                        Text = g.Name
+                        Text = g.Name,
+                        IsActive = g.IsActive
                     })
                     .ToList();
 
