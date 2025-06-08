@@ -18,5 +18,10 @@ namespace Rock.ViewModels.Controls
 
             [DataMember(Name = "text")]
             public string Text { get; set; }
+
+            [DataMember(Name = "isActive")]
+            public bool IsActive { get; set; }
+
         }
+
 }
