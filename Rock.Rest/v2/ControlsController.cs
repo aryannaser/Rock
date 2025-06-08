@@ -10086,6 +10086,7 @@ namespace Rock.Rest.v2
                         Value = g.Guid,
                         Text = g.Name,
                         IsActive = g.IsActive
+
                     })
                     .ToList();
 

@@ -21,5 +21,7 @@ namespace Rock.ViewModels.Controls
 
             [DataMember(Name = "isActive")]
             public bool IsActive { get; set; }
-    }
+
+        }
+
 }
