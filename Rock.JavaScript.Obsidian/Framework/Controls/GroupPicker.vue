@@ -19,8 +19,11 @@
             required: false
         },
 
-        /** Determines if inactive groups should be included in the list. */
-        includeInactive: {
+        /**
+         * Determines if inactive groups should be included in the list.
+         * (Renamed per boolean guidelines to reflect Is/Has prefix.)
+         */
+        isInactiveIncluded: {
             type: Boolean as PropType<boolean>,
             default: false
         },
@@ -54,7 +57,7 @@
      * Loads the group options from our custom API endpoint.
      */
     const loadOptions = async (): Promise<ListItemBag[]> => {
-        const apiUrl = `/api/v2/controls/grouppickerdata?includeInactive=${props.includeInactive}`;
+        const apiUrl = `/api/v2/controls/grouppickerdata?includeInactive=${props.isInactiveIncluded}`;
         const result = await http.get<ListItemBag[]>(apiUrl);
 
         if (result.isSuccess && result.data) {
@@ -73,7 +76,7 @@
      * We "watch" the prop for changes. If it ever changes, we clear our
      * cached 'loadedItems', which forces the component to re-fetch.
      */
-    watch(() => props.includeInactive, () => {
+    watch(() => props.isInactiveIncluded, () => {
         loadedItems.value = null;
     });
 </script>

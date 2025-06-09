@@ -39,7 +39,7 @@ module.exports = {
     },
     resolve: {
         /* WebPack will process `.ts` and then if not found try `.js`. */
-        extensions: [".ts", ".js", ".tsx"]
+        extensions: [".ts", ".js", ".tsx", ".vue"]
     },
     module: {
         rules: [
@@ -57,6 +57,10 @@ module.exports = {
                 test: /\.tsx$/,
                 use: ["babel-loader", "ts-loader"]
             },
+            {
+                test: /\.vue$/,
+                loader: "vue-loader"
+            }
         ],
     },
     optimization: {
